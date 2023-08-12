@@ -8,8 +8,7 @@ metadata:
     "helm.sh/hook": test
 spec:
   containers:
-    - name: wget
-      image: busybox
-      command: ['wget']
-      args: ['{{ include "todo-api.fullname" . }}:{{ .Values.service.port }}']
+    - name: curl
+      image: curlimages/curl:latest
+      command: ['curl', '{{ include "todo-api.fullname" . }}:{{ .Values.service.port }}/api/todos']
   restartPolicy: Never
